@@ -1,0 +1,328 @@
+1、set，无序，不重复序列
+创建
+s1 = {1,2}
+s2 = set([1,2,3])
+s3 = set()
+
+列表转换为字典
+li = [1,2,3,4]
+s1 = set(li)
+
+操作集合
+s = {1,}
+s.add(2)
+print(s)
+
+爬虫
+把访问过的url放入 set中，不用判断是否重复的问题
+
+s1 = {11,22,33}
+s2 = {22,33,44}
+
+difference()
+s3 = s1.difference(s2)
+s3中 s1中有 s2中没有的元素
+
+symmetric_difference()
+s3 = s1.symmetric_difference(s2)
+A∪B - A∩B
+
+difference_update()
+s1.difference_update(s2)
+将s1的元素为  s1中有，s2中没有的元素 
+
+symmetric_difference()
+s1.symmetric_difference(s2)
+s1元素 为 A∪B - A∩B
+
+intersection()
+求两个集合的交集
+s1.intersection(s2)
+A∩B
+
+intersection.update()
+s1.intersection.update(s2)
+s1中的元素为 s1 与s2 的交集 
+
+isdisjoint()
+判断连个集合是否有交集 True  False
+s1.isdisjoint(s2)
+
+issubset() 判断是不是子集
+
+issuperset() 判断是不是父集
+
+union()
+求两个集合的并集
+
+
+discard()
+移除指定元素，不存在不报错
+s1.discard(111)
+
+remove()
+移除指定元素，不存在报错
+
+pop()
+随机移除集合中的元素
+
+批量添加元素到集合中
+li = [11,22,33,44]
+s1.update(li)
+
+
+函数
+
+def foo():
+	pass
+	
+1、def 关键字，创建函数
+2、函数名 foo
+3、()
+4、函数体 pass
+5、返回值 return
+6、执行函数foo()
+
+def f1():
+	print('123')
+	
+r = f1()
+print(r)
+r的值为“None”
+
+函数参数
+1、普通参数
+def foo(x):
+	print(x)
+foo(x)
+
+2、默认参数
+def foo(x,y=0):
+	return x + y
+y 是默认参数 默认参数只能反正所有参数的最后	
+foo(1)
+foo(1,2)
+如果不设置第二个参数，第二个参数值为默认值0
+
+
+3、指定参数
+def foo(x,y,z=0):
+	print(x,y,z)
+foo(y=1,x=2,z=3)
+	
+4、动态参数
+def f1(*args):
+	print(args)
+*args 列表，元祖 默认将传入的参数，全部放置在元祖中
+f1(*[1,2,3])
+li = [1,2,3]
+f1(li)
+
+def f1(**args):
+	print(args)
+**kargs 字典  默认将传入的参数，全部放置在字典中
+f1(a=1)
+f1(**{'a':1})
+dic = {'a':1}
+f1(dic)
+f1(a=dic)
+
+5、万能参数
+def f1(*args,**kwargs):
+	print(args)
+	print(kwargs)
+f1(1,2,3,4,k1='v1',k2='v2')
+
+备注：必须一个*在前，**在后！！！
+
+
+字符串格式化输出
+
+s1 = "i am {0},age {1}".format('gx',26)
+print(s1)
+
+s2 = "i am {0},age {1}".format(*['gx',18])
+print(s2)
+
+s3 = "i am {name},age {age}".format(name='gx',age=26)
+print(s3)
+
+info = {'name':'gx','age':26}
+s4 = "i am {name},age {age}".format(**info)
+print(s4)
+
+在同一个文件中：
+def f1(x,y):
+	return x + y
+	
+def f1(x,y):
+	return x * y
+	
+res = f1(1,2)
+print(res)
+输出函数2的结果
+函数1 成为垃圾 由Python自带垃圾回收机制回收
+	
+def foo(a1):
+	a1.append(999)
+li = [1,2,3,4]
+foo(li)
+
+print(li)
+
+输出[1,2,3,4,999]
+参数在传递的时候，传递的是引用
+
+函数外定义的变量为全局变量
+在函数中定义的变量为局部变量
+
+函数可以利用全局变量
+
+对于全局变量重新复制，用global
+eg:
+def foo():
+	age = 26
+	global name #name 为 全局变量
+	print(age,name)
+	
+全局变量，所有作用域都可以读
+全局变量【重新赋值】 需要用global 不能重新复制
+全局变量 为 列表、字典 可以修改、添加 但不能重新赋值
+
+定义全局变量 全部用大写字母
+
+为函数添加注释
+def login(username,password):
+    """
+    :param username: 输入用户名
+    :param password: 输入密码
+    :return: 返回登录是否成功
+    """
+    with open('db','r') as f:
+        for line in f:
+            if username == line.split('|')[0]:
+                for i in range(2):
+                    if password == line.split('|')[1].strip():
+                        print('login success')
+                        break
+                    else:
+                        password = input('Please input password again:')
+                        continue
+username = input('Please input username:')
+pwd = input('Please input password:')
+login(username,pwd)
+
+三元运算
+
+name = 'gx' if 1 > 1 else 'handsome'
+print(name)
+如果表达式为真 返回if左边的值 反之返回else的值
+
+匿名函数
+def foo(a1):
+    return a1 + 100
+
+f2 = lambda  a1:a1 + 100
+print(f2(100))
+
+
+f = lambda a1,a2:a1 + a2 + 100
+res = f(1,2)
+print(res)
+
+abs()
+绝对值
+
+all()
+所有元素都为真是 结果为真
+any()
+任何一个为真 结果为真
+
+bin()
+转换为二进制
+oct()
+转换为八进制
+hex()
+转换为十六进制
+
+utf-8 一个汉字：三个字节
+gbk   一个韩式：二个字节
+
+字符串转换成字节类型
+s = '郭鑫'
+n1 = byte(s,encoding='utf-8')
+n2 = byte(s,encoding='gbk')
+
+
+字节转换成字符串类型
+
+str(byte('郭鑫',encoding='utf-8'),encoding='utf-8')
+
+文件处理
+打开文件
+f = open('db','r') # 只读
+f = open('db','w') # 只写，先清空原文件，若原文件不存在，先创建
+f = open('db','x') # 若文件存在，报错；不存在，创建并只写
+f = open('db','a') # 在文件末尾追加
+f = open('db','r',encoding='utf-8') #
+
+"+" 表示可以同时读写某个文件
+
+r+， 读写【可读，可写】
+w+，写读【可读，可写】
+x+ ，写读【可读，可写】
+a+， 写读【可读，可写】
+ "b"表示以字节的方式操作
+
+rb  或 r+b
+wb 或 w+b
+xb 或 w+b
+ab 或 a+b
+注：以b方式打开时，读取到的内容是字节类型，写入时也需要提供字节类型
+
+文件操作
+read() 无参数，读全部 有b按字节读，  无b按字符读 
+tell() 获取当前指针位置（字节）
+seek(1) 指针跳转到指定位置（字节）
+write() 
+有b按字节写，无b按字符写。
+close() 关闭
+flush() 强制刷新
+readable() 判断是否可读
+readline() 仅读取一行
+truncate() 截断，将指针后的内容删除
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

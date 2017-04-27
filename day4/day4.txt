@@ -1,0 +1,185 @@
+函数参数 传递 的是引用
+
+li = [11,22,33,44]
+def foo(arg):
+	arg.append(55)
+li = foo(li)
+print(li)
+输出显示“None”
+
+内置函数
+bin()
+将十进制数转换成二进制
+chr()
+将ASCII码代表的数字转换成字符
+ord()
+将字符转换成ASCII码的代表数字
+
+random 
+生成随机数
+
+import random
+i = random.randrange(1,5)
+1 <= i < 5
+
+随机生成一个大写字母
+i = random.randrange(65,91)
+print(chr(i)
+
+生成随机验证码
+li = []
+for i in range(6):
+	r = random.randrange(0,5)
+    if r == 2 or r == 4:
+       li.append(str(random.randrange(0,10)))
+    else:
+        temp = random.randrange(65,91)
+        li.append(chr(temp))
+print(''.join(li))
+
+
+python解释器
+
+python  foo.py
+1、读取文件内容（open方式打开）到内存，（将str加载到内存）
+2、python 把 字符串 --> 编译 --> 特殊代码
+3、执行代码
+
+
+s = 'print('123')' #仅仅是字符串不是代码
+r = compile(s,"<string>","exec") #将s编译成可执行代码，
+编译有三种模式，single，eval，exec
+single编译成单行的python程序，eval 编译成表达式，exec 编译成 跟Python 代码一抹一样的东东
+compile还可以打开一个文件 将内容字符串编译
+exec(r) #编译好以后，用exec函数执行
+print(exec(r))
+输出显示“123”
+
+exec("7+8+9")
+执行python代码，接收：代码或者字符串
+ret = eval("7+8+9")
+
+s = ”8*8“
+re = eval(s)
+执行表达式，并且获取结果
+
+dir()
+快速查看对象提供了哪些功能
+print(dir(list))
+
+divmod() #模除 
+r = divmod(97,10)
+print(r)
+$(9,7)
+
+
+s = 'alex' # s 是类的实例 'alex' 字符串对象 
+s = 'gx'
+r = isinstance(s,dict)
+print(r)
+$False
+isinstance() # 用于判断是否是某个类的实例
+
+filter()#过滤筛选 符合条件的 值
+li = [1,2,3,4,5]
+res = filter(lambda a:a>2,li)
+print(list(res))
+$[3,4,5]
+
+map() ##可迭代对象 输出所有迭代结果
+li = [1,2,3,4,5]
+res = map(lambda a:a + 100,li)
+print(list(res))
+
+locals() #获取全部局部变量
+globals()#获取全部全局变量
+
+NAME = 'gx'
+def foo():
+	a = 'hehe'
+	print(locals())
+	print(globals())
+
+
+hash()# 哈希
+s = 'gx'
+print(hash(s))
+
+len()#计算字符串长度
+print(len('郭鑫'))
+
+
+json
+json.loads() #将一个字符串，转换成python的基本数据类型 [] {} *****字符串中的元素必须使用双引号*****
+import json
+s = '{"k1":"v1"}'
+n = json.loads(s)
+print(s)
+${"k1":"v1"}
+
+round()#四舍五入
+round(1.7)
+
+zip()
+l1 = ['gx',11,22,33]
+l2 = ['is',11,22,33]
+l3 = ['handsome',11,22,33]
+r = zip(l1,l2,l3)
+temp = list(r)[0]
+print(temp)
+$gx is handsome
+
+装饰器
+1.自动执行outer函数并且将其下面的函数名foo当参数传递
+2.将outer函数的返回值 返回给函数foo
+def outer(func):
+	def inner():
+		print('123')
+		func(a,b)
+		print('after')
+	return inner
+@outer
+def foo():
+	print('foo')
+
+加参数
+def outer(func):
+	def inner(*args,**kwagrs):
+		print('123')
+		func(*args,**kwagrs)
+	return inner
+def foo(a,b):
+	print('a,b')
+	
+返回值
+def outer(func):
+	def inner(*args,**kwagrs):
+		print('123')
+		r = func(*args,**kwagrs)
+		return r
+	return inner
+def foo(a,b):
+	return a + b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
